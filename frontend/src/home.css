@@ -1,0 +1,195 @@
+/* General Layout */
+.home-container {
+  font-family: 'Segoe UI', sans-serif;
+  color: #333;
+  line-height: 1.6;
+  background-color: #f9fbfc;
+}
+
+
+
+
+/* Header */
+.header {
+  background-color: #ffffff;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo-circle {
+  background-color: #e6f0ff;
+  padding: 0.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-title {
+  font-size: 1.5rem;
+  color: #007bff;
+  font-weight: 600;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-btn {
+  border: 0.5px solid #007bff;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  color: #007bff;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.nav-btn:hover {
+  background-color: #007bff;
+  color: #ffffff;
+}
+
+/* Intro Section */
+.intro-section {
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.main-heading {
+  font-size: 2rem;
+  color: #004080;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.intro-text {
+  font-size: 1rem;
+  max-width: 700px;
+  margin: 0.5rem auto;
+}
+
+/* Section Headers */
+.section-header {
+  text-align: center;
+  padding: 1rem;
+}
+
+.section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  background-color: #e6f0ff;
+  color: #007bff;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  color: #003366;
+  margin-bottom: 0.5rem;
+}
+
+.section-description {
+  color: #666;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Grid Layouts */
+.features-grid,
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+/* Cards */
+.card {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.card-icon {
+  margin-bottom: 1rem;
+  color: #007bff;
+}
+
+.card-title:hover {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #003366;
+  margin-bottom: 0.5rem;
+}
+
+.card-description {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* Step Cards */
+.step-card {
+  position: relative;
+}
+
+.step-number {
+  position: absolute;
+  top: -12px;
+  left: -12px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 3px #ffffff;
+}
+
+/* CTA Button */
+.generate-button-container {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.generate-btn {
+  display: inline-block;
+  background-color: #007bff;
+  color: #ffffff;
+  font-weight: bold;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.generate-btn:hover {
+  background-color: #0056b3;
+}
+
+
+

@@ -1,0 +1,24 @@
+# Python / FastAPI
+__pycache__/
+*.py[cod]
+venv/
+.env
+*.db
+*.log
+
+# Node / React
+node_modules/
+build/
+dist/
+*.log
+.env.local
+.env.development
+.env.production
+
+# System
+.DS_Store
+.vscode/
+.idea/
+
+# Output
+*.pdf
