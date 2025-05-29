@@ -28,6 +28,15 @@ load_dotenv()
 
 app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+                   "https://smile-scan-ai.vercel.app"],  # adjust as needed
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 from fastapi import Request
 from fastapi.responses import StreamingResponse
 from reportlab.lib.pagesizes import A4
@@ -44,7 +53,7 @@ from reportlab.lib.colors import black, white, HexColor
 from io import BytesIO
 import datetime
 
-app = FastAPI()
+
 
 @app.post("/download-pdf/")
 async def generate_pdf_report(request: Request):
@@ -185,14 +194,7 @@ Date of Examination: {exam_date}
     })
 
 
-# Allow frontend access
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # adjust as needed
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+
 
 # Roboflow API setup
 ROBOFLOW_API_KEY = os.getenv("ROBOFLOW_API_KEY")
