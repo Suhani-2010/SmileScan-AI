@@ -47,8 +47,13 @@ function Report() {
   const [patientGender, setPatientGender] = useState("");
   const [examDate, setExamDate] = useState("");
 
-
+  const [ downloading, setDownloading] = useState(false);
   const handleDownloadPDF = async () => {
+  if (!patientName || !patientAge || !patientGender || !examDate) {
+    alert("Please fill in all patient details before downloading the PDF.");
+    return;
+  }
+
   const { impression, recommendations } = splitReportSections(report);
 
   const formData = new FormData();
@@ -70,7 +75,7 @@ function Report() {
   }
 
   try {
-    const response = await fetch("https://smilescan-ai-1.onrender.com/download-pdf/", {
+    const response = await fetch("http://localhost:8000/download-pdf/", {
       method: "POST",
       body: formData,
     }); 
@@ -89,18 +94,30 @@ function Report() {
     window.URL.revokeObjectURL(url);
   } catch (error) {
     console.error("Error downloading PDF:", error);
+    alert("There was an error downloading the PDF. Please try again.");
+  } finally {
+    setDownloading(false);
   }
 };
 
+  const isFormValid = () => {
+  return patientName && patientAge && patientGender && examDate;
+};
 
-  const handleUpload = async () => {
+
+const handleUpload = async () => {
+    if (!isFormValid()) {
+    alert("Please fill in all required patient details before generating the report.");
+    return;
+    }
+  
     if (!file) return;
     setLoading(true);
     const formData = new FormData();
     formData.append("file", file);
 
     try {
-      const res = await axios.post("https://smilescan-ai-1.onrender.com/upload/", formData);
+      const res = await axios.post("http://localhost:8000/upload/", formData);
       setImage(res.data.image);
       const rawText = res.data.report || "No findings.";
       console.log("🧾 RAW REPORT TEXT:", rawText); 
@@ -151,7 +168,7 @@ const splitReportSections = (text) => {
       .split("\n")
       .map((line) => line.trim())
       .filter((line) => line.length > 0)
-      .join("\n\n"); // Markdown expects double line breaks between paragraphs
+      .join("\n\n");
 
   const impressionMatch = text.match(
     /\*\*(Radiographic )?Impression:\*\*([\s\S]*?)(\*\*(Recommendations|Recommendations for Follow-Up):\*\*)/i
@@ -160,15 +177,18 @@ const splitReportSections = (text) => {
     /\*\*(Recommendations|Recommendations for Follow-Up):\*\*([\s\S]*)$/i
   );
 
-  const impression = impressionMatch
-    ? cleanParagraphs(impressionMatch[2])
-    : "Not available.";
-  const recommendations = recommendationsMatch
-    ? cleanParagraphs(recommendationsMatch[2])
-    : "Not available.";
+  const impression = impressionMatch ? cleanParagraphs(impressionMatch[2]) : null;
+  const recommendations = recommendationsMatch ? cleanParagraphs(recommendationsMatch[2]) : null;
 
-  return { impression, recommendations };
+  const noSectionsFound = !impression && !recommendations;
+
+  return {
+    impression: impression || (noSectionsFound ? text.trim() : "Not available."),
+    recommendations: recommendations || "Not available.",
+    unstructured: noSectionsFound,
+  };
 };
+
 
 
 
@@ -292,19 +312,37 @@ ${recommendations}
           <p><strong>Date of Examination:</strong> {examDate || "[Not Provided]"}</p>
         </div>
 
-        <div className="report-section">
-          <h3>Radiographic Impression</h3>
-          <pre style={{ whiteSpace: "pre-wrap", fontFamily: "inherit" }}>
-            {cleanedReportText(impression)}
-          </pre>
-        </div>
+        {splitReportSections(report).unstructured ? (
+  <div className="report-section">
+    <h3>Full Diagnostic Report</h3>
+    <pre style={{ whiteSpace: "pre-wrap", fontFamily: "inherit" }}>
+      {cleanReportText(report)}
+    </pre>
+  </div>
+) : (
+  <>
+    <div className="report-section">
+      <h3>Radiographic Impression</h3>
+      <pre style={{ whiteSpace: "pre-wrap", fontFamily: "inherit" }}>
+        {cleanedReportText(impression)}
+      </pre>
+    </div>
 
-        <div className="report-section">
-          <h3>Recommendations</h3>
-          <pre style={{ whiteSpace: "pre-wrap", fontFamily: "inherit" }}>
-            {cleanReportText(recommendations)}
-          </pre>
-        </div>
+    <div className="report-section">
+      <h3>Recommendations</h3>
+      <pre style={{ whiteSpace: "pre-wrap", fontFamily: "inherit" }}>
+        {cleanReportText(recommendations)}
+      </pre>
+    </div>
+  </>
+)}
+<div className="footer-disclaimer" style={{ marginTop: '1rem', fontSize: '0.85rem', color: '#666' }}>
+  <em>
+    Disclaimer: This diagnostic report is generated using AI-assisted analysis and is intended for informational purposes only.
+    It should not be considered a substitute for professional clinical evaluation or advice. Always consult a licensed dental professional for diagnosis and treatment.
+  </em>
+  </div>
+
       </div>
     </div>
 
@@ -314,7 +352,7 @@ ${recommendations}
         🖨️ Download PDF
       </button>
     </div>
-  </div>
+</div>
 )}
 
         </div>

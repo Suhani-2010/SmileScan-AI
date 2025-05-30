@@ -31,7 +31,7 @@ app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-                   "https://smile-scan-ai.vercel.app"],  # adjust as needed
+                   "http://localhost:3000"],  # adjust as needed
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -182,6 +182,13 @@ Date of Examination: {exam_date}
     for line in wrap_text(recommendations, 95):
         p.drawString(x_margin, y, line)
         y -= line_height
+    
+   
+    p.setFont("Helvetica-Oblique", 8)
+    p.setFillColor(colors.grey)
+    p.drawString(x_margin, y - 20, "Disclaimer: This diagnostic report is AI-generated and not a substitute for professional advice.")
+    p.drawString(x_margin, y - 32, "Always consult a licensed dental provider for diagnosis and treatment.")
+
 
     
     # === Finalize PDF ===
@@ -256,6 +263,7 @@ def build_prompt_from_predictions(predictions):
         "with two clear sections:\n\n"
         "1. Radiographic Impression\n"
         "2. Recommendations\n\n"
+        
         f"Findings:\n{findings}\n\n"
         "Keep it short,clinical and use dental terminology."
     )
@@ -318,7 +326,11 @@ async def upload_file(file: UploadFile = File(...)):
                 api_url=ROBOFLOW_API_URL,
                 api_key=ROBOFLOW_API_KEY
             )
-            result = rf_client.infer(temp_file.name, model_id="adr/6")
+            result = rf_client.infer(
+                    temp_file.name,
+                    model_id="adr/6",
+            )
+
             predictions = result.get("predictions", [])
         except Exception as e:
             print("Roboflow error:", e)
