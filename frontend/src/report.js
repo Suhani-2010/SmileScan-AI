@@ -75,7 +75,7 @@ function Report() {
   }
 
   try {
-    const response = await fetch("http://localhost:8000/download-pdf/", {
+    const response = await fetch("https://smile-scan-ai.vercel.app/download-pdf", {
       method: "POST",
       body: formData,
     }); 
@@ -117,7 +117,7 @@ const handleUpload = async () => {
     formData.append("file", file);
 
     try {
-      const res = await axios.post("http://localhost:8000/upload/", formData);
+      const res = await axios.post("https://smile-scan-ai.vercel.app/upload", formData);
       setImage(res.data.image);
       const rawText = res.data.report || "No findings.";
       console.log("🧾 RAW REPORT TEXT:", rawText); 
