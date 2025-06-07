@@ -15,7 +15,7 @@ An AI-powered dental diagnostic platform that lets users upload dental X-rays (i
   - Recommendations
   - Clinical Summary
   - Additional Notes
-- Downloadable PDF & TXT report
+- Downloadable PDF report
 - Clean React-based user interface
 
 ---
@@ -41,6 +41,7 @@ An AI-powered dental diagnostic platform that lets users upload dental X-rays (i
 
 ## 📁 Folder Structure
 
+\```
 .
 ├── backend
 │   ├── dental-env
@@ -62,10 +63,7 @@ An AI-powered dental diagnostic platform that lets users upload dental X-rays (i
 ├── README.md
 ├── requirements.txt
 └── structure.txt
-
-yaml
-Copy
-Edit
+\```
 
 ---
 
@@ -74,100 +72,121 @@ Edit
 ### 🔧 Backend Setup
 
 1. Navigate to backend folder:
-   ```bash
-   cd backend
-Create and activate a virtual environment (optional):
 
-bash
-Copy
-Edit
+\```bash
+cd backend
+\```
+
+2. Create and activate a virtual environment (optional):
+
+\```bash
 python -m venv venv
 source venv/bin/activate  # On Windows use: venv\Scripts\activate
-Install dependencies:
+\```
 
-bash
-Copy
-Edit
+3. Install dependencies:
+
+\```bash
 pip install -r requirements.txt
-Add .env file in backend/ folder with the following content:
+\```
 
-ini
-Copy
-Edit
+4. Add `.env` file in `backend/` folder with the following content:
+
+\```ini
 ROBOFLOW_API_KEY=your_roboflow_api_key
 OPENROUTER_API_KEY=your_openrouter_api_key
-Run FastAPI server:
+\```
 
-bash
-Copy
-Edit
+5. Run FastAPI server:
+
+\```bash
 uvicorn main:app --reload
-Visit the backend API at: http://localhost:8000
+\```
 
-🎨 Frontend Setup
-Navigate to frontend folder:
+6. Visit the backend API at: http://localhost:8000
 
-bash
-Copy
-Edit
+---
+
+### 🎨 Frontend Setup
+
+1. Navigate to frontend folder:
+
+\```bash
 cd frontend
-Install dependencies:
+\```
 
-bash
-Copy
-Edit
+2. Install dependencies:
+
+\```bash
 npm install
-Start the frontend:
+\```
 
-bash
-Copy
-Edit
+3. Start the frontend:
+
+\```bash
 npm run dev
-Visit the frontend app at: http://localhost:3000
+\```
 
-☁️ Deployment
-🔷 Backend on Render
-Push backend folder to GitHub.
+4. Visit the frontend app at: http://localhost:3000
 
-Create a new Web Service on https://render.com.
+---
 
-Set:
+## ☁️ Deployment
 
-Root directory: backend
+### 🔷 Backend on Render
 
-Start command: uvicorn main:app --host 0.0.0.0 --port 10000
+- Push `backend` folder to GitHub.
+- Create a new Web Service on https://render.com.
+- Set:
+  - Root directory: `backend`
+  - Start command: `uvicorn main:app --host 0.0.0.0 --port 10000`
+  - Python version: 3.10+
+- Add environment variables:
+  - `ROBOFLOW_API_KEY`
+  - `OPENROUTER_API_KEY`
+- Deploy.
 
-Python version: 3.10+
+### 🟢 Frontend on Vercel
 
-Add environment variables:
+- Push `frontend` folder to GitHub.
+- Go to https://vercel.com → New Project.
+- Import your GitHub repo.
+- Set root directory to `frontend`.
+- Deploy.
 
-ROBOFLOW_API_KEY
+---
 
-OPENROUTER_API_KEY
+## 🧪 How It Works
 
-Deploy.
+1. Upload a DICOM file.
+2. View annotated image (Roboflow prediction).
+3. AI generates structured clinical report using GPT.
+4. Download report as PDF.
 
-🟢 Frontend on Vercel
-Push frontend folder to GitHub.
+---
 
-Go to https://vercel.com → New Project.
+## 🖼️ Example Screenshots
 
-Import your GitHub repo.
+| Upload DICOM | Annotated Image | Generated Report |
+|--------------|-----------------|------------------|
+| *(Add your screenshots here)* | *(Add your screenshots here)* | *(Add your screenshots here)* |
 
-Set root directory to frontend.
+---
 
-Deploy.
+## 🙋‍♀️ Author
 
-🧪 How It Works
-Upload a DICOM file.
-
-View annotated image (Roboflow prediction).
-
-AI generates structured clinical report using GPT.
-
-Download report as PDF or TXT.
-
-🙋‍♀️ Author
 **Suhani Agarwal**  
-Final Year College Student   
-📫 LinkedIn (https://www.linkedin.com/in/suhani-agarwal-999ab2255/)
+Final Year College Student | AI Healthcare Enthusiast  
+📫 [LinkedIn](https://www.linkedin.com/in/suhanisagarwal) *(replace with your actual URL)*
+
+---
+
+## 📜 License
+
+This project is licensed under the MIT License.
+
+---
+
+## ⭐️ Star This Repo
+
+If you like this project, please ⭐️ it on GitHub to show support!
