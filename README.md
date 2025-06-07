@@ -75,33 +75,33 @@ An AI-powered dental diagnostic platform that lets users upload dental X-rays (i
 
 ```bash
 cd backend
-
+```
 
 2. Create and activate a virtual environment (optional):
 
-bash
+```bash
 python -m venv venv
 source venv/bin/activate  # On Windows use: venv\Scripts\activate
-
+```
 
 3. Install dependencies:
 
-bash
+```bash
 pip install -r requirements.txt
-
+```
 
 4. Add `.env` file in `backend/` folder with the following content:
 
-ini
+```ini
 ROBOFLOW_API_KEY=your_roboflow_api_key
 OPENROUTER_API_KEY=your_openrouter_api_key
-
+```
 
 5. Run FastAPI server:
 
-bash
+```bash
 uvicorn main:app --reload
-
+```
 
 6. Visit the backend API at: http://localhost:8000
 
@@ -113,19 +113,19 @@ uvicorn main:app --reload
 
 ```bash
 cd frontend
-
+```
 
 2. Install dependencies:
 
-bash
+```bash
 npm install
-
+```
 
 3. Start the frontend:
 
-bash
+```bash
 npm run dev
-
+```
 
 4. Visit the frontend app at: http://localhost:3000
 
@@ -169,8 +169,8 @@ npm run dev
 ## 🙋‍♀️ Author
 
 **Suhani Agarwal**  
-Final Year College Student | AI Healthcare Enthusiast  
-📫 [LinkedIn](https://www.linkedin.com/in/suhanisagarwal) *(replace with your actual URL)*
+Final Year College Student  
+📫 [LinkedIn](https://www.linkedin.com/in/suhanisagarwal) 
 
 ---
 
