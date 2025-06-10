@@ -41,7 +41,7 @@ An AI-powered dental diagnostic platform that lets users upload dental X-rays (i
 
 ## 📁 Folder Structure
 
-\```
+<pre>```
 .
 ├── backend
 │   ├── dental-env
@@ -63,7 +63,8 @@ An AI-powered dental diagnostic platform that lets users upload dental X-rays (i
 ├── README.md
 ├── requirements.txt
 └── structure.txt
-\```
+```
+</pre>
 
 ---
 
