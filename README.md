@@ -41,7 +41,7 @@ An AI-powered dental diagnostic platform that lets users upload dental X-rays (i
 
 ## 📁 Folder Structure
 
-<pre>```
+<pre>
 .
 ├── backend
 │   ├── dental-env
@@ -63,7 +63,7 @@ An AI-powered dental diagnostic platform that lets users upload dental X-rays (i
 ├── README.md
 ├── requirements.txt
 └── structure.txt
-```
+
 </pre>
 
 ---
@@ -171,7 +171,7 @@ npm run dev
 
 **Suhani Agarwal**  
 Final Year College Student  
-📫 [LinkedIn](https://www.linkedin.com/in/suhanisagarwal) 
+📫 [LinkedIn](https://www.linkedin.com/in/suhani-agarwal-999ab2255/) 
 
 ---
 
